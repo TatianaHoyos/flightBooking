@@ -9,10 +9,9 @@ import java.util.List;
 
 @Getter
 @Setter
-//@NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Fight {
+public class Flight {
     private String searchId;
     private float fxRate;
     private List<FlightDetails> data;
