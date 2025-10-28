@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Flight {
+public class FlightModel {
     private String searchId;
     private float fxRate;
     private List<FlightDetails> data;
