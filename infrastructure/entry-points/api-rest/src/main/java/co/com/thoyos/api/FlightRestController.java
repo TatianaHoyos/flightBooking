@@ -1,19 +1,13 @@
 package co.com.thoyos.api;
-import co.com.thoyos.api.builder.ResponseBuilder;
-import co.com.thoyos.model.flight.dto.FlightResponseDto;
+import co.com.thoyos.api.service.FlightService;
 import co.com.thoyos.model.flight.dto.FlightSearchInput;
-import co.com.thoyos.usecase.flight.FlightUseCase;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.text.ParseException;
 
 /**
  * API Rest controller.
@@ -32,28 +26,30 @@ import java.util.Date;
 @AllArgsConstructor
 public class FlightRestController {
 
-    private final FlightUseCase flightUseCase;
-    private final ResponseBuilder responseDefault;
-    private long timeStamp;
+    private final FlightService service;
 
     @RequestMapping(value = "flights/avg", method = RequestMethod.GET, headers="Accept=application/json")
-    public ResponseEntity<?> filterFlights(@PathParam("flyFrom")final String flyFrom,
-                                           @PathParam("flyTo")final  String flyTo,
-                                           @PathParam("currency")final String currency,
-                                           @PathParam("dateFrom") final  String dateFrom,
-                                           @PathParam("dateTo") final  String dateTo,
-                                           @PathParam("airLines") final String airLines
-                                           ){
-        timeStamp = new Date().getTime();
+    public ResponseEntity<?> filterFlights(@RequestParam("flyFrom")final String flyFrom,
+                                           @RequestParam("flyTo")final  String flyTo,
+                                           @RequestParam("currency")final String currency,
+                                           @RequestParam("dateFrom") final  String dateFrom,
+                                           @RequestParam("dateTo") final  String dateTo,
+                                           @RequestParam("airLines") final String airLines
+                                           ) throws ParseException {
+
         FlightSearchInput input = new FlightSearchInput(currency, dateFrom, dateTo,
                 flyTo, flyFrom, airLines);
-        FlightResponseDto filter = flightUseCase.filterFlights(input);
-
-        return responseDefault.build(filter,timeStamp, HttpStatus.OK);
+        ResponseEntity<Object> flight = service.getFlight(input);
+        return flight;
     }
 
     @GetMapping(path = "/usecase/path")
     public String commandName() {
+        return "";
+    }
+
+    @PostMapping(path = "/usecase/path")
+    public String commandName2() {
         return "";
     }
 }

@@ -1,8 +1,10 @@
 package co.com.thoyos.model.flight.gateways;
 
-import co.com.thoyos.model.flight.FlightModel;
+import co.com.thoyos.model.flight.FlightEntity;
+import co.com.thoyos.model.flight.LocationEntity;
 import co.com.thoyos.model.flight.dto.FlightSearchInput;
 
 public interface FlightsGateway {
-    FlightModel getFlights(FlightSearchInput input);
+    FlightEntity getFlights(FlightSearchInput input);
+    LocationEntity getLocation(String iata);
 }

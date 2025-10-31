@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class FlightDetails {
+public class FlightDetailsEntity {
     private String id;
     private String flyFrom;
     private String cityFrom;
@@ -24,5 +24,5 @@ public class FlightDetails {
     private Long dTimeUTC;
     private Long aTime;
     private Long aTimeUTC;
-    private FlightBagPrice baggage;
+    private FlightBagPriceEntity baggage;
 }

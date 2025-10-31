@@ -1,4 +1,4 @@
-package co.com.thoyos.model.flight.dto;
+package co.com.thoyos.api.dto;
 
 import lombok.AllArgsConstructor;
 
