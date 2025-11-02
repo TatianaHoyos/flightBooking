@@ -7,10 +7,11 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder(toBuilder = true)
 public class FlightEntity {
     private String searchId;
     private String currency;
-    private float fxRate;
+    private Float fxRate;
     private List<FlightDetailsEntity> data;
 }

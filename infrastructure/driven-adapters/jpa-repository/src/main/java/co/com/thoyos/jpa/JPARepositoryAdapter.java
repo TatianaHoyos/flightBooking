@@ -28,44 +28,6 @@ import java.util.Collections;
 
 @Component
 @AllArgsConstructor
-public class JPARepositoryAdapter implements FlightsGateway {
+public class JPARepositoryAdapter {
 
-    @Override
-    public FlightEntity getFlights(FlightSearchInput input) {
-        return FlightEntity.builder()
-                .fxRate(35000F)
-                .searchId("12")
-                .currency("20000")
-                .data(Collections.singletonList(FlightDetailsEntity.builder()
-                                .id("1")
-                                .aTime(555L)
-                                .aTimeFormatted("HH")
-                                .aTimeUTC(6665L)
-                                .baggage(FlightBagPriceEntity.builder()
-                                        .bagOnePrice(66500.00)
-                                        .bagTwoPrice(56250.00)
-                                        .build())
-                                .cityCodeFrom("665")
-                                .cityFrom("Colombia")
-                                .dTime(65L)
-                                .cityCodeTo("Mexico")
-                                .dTimeFormatted("HH")
-                                .flyFrom("Colombia")
-                                .dTimeUTC(564L)
-                                .price(369452F)
-                                .cityTo("Medellin")
-                                .flyTo("Venezuela")
-
-                        .build()))
-                .build();
-    }
-
-    @Override
-    public LocationEntity getLocation(String iata) {
-        return LocationEntity.builder()
-                .locations(Collections.singletonList(FlightLocationEntity.builder()
-                                .code("55")
-                        .build()))
-                .build();
-    }
 }
